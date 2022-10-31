@@ -156,7 +156,7 @@ p {
               <img src="" alt="Shy today!" id="icon" class="float-left" />
               <div class="float-left">
                 <span class="temperature" id="temperature"></span
-                ><span class="units">°C</span></span>
+                ><span class="units">°C | <a href="#" id="fahrenheit-link">°F</a></span></span>
               </div>
             </div>
           </div>
@@ -258,6 +258,13 @@ function convertToCelsius(event) {
   temperatureElement.innerHTML = 19;
 }
 
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (12 * 9 / 5) + 32;
+  let temperatureElement = document.querySelector("#temperature");
+temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
 let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
@@ -267,6 +274,9 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 searchCity("New York");
 
