@@ -202,17 +202,16 @@ p {
 }
 
 
+
 function displayWeatherCondition(response) {
-  let celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = response.data.main.temp;
   
   let iconElement = document.querySelector("#icon");
   document.querySelector("#city").innerHTML = response.data.name;
   let currentTemperature = document.querySelector("#temperature");
- // document.querySelector("#temperature")
-  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  document.querySelector("#temperature")
+  currentTemperature.innerHTML = Math.round(response.data.main.temp);
   
-
-
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -243,6 +242,7 @@ function showFahrenheitTemperature(event) {
    celsiusLink.classList.remove("active");
    fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function showcelsiusTemperature(event) {
@@ -252,7 +252,7 @@ function showcelsiusTemperature(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-let celsiusTemperature = null;
+
 
 function searchLocation(position) {
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
@@ -267,17 +267,17 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
-//function convertToFahrenheit(event) {
- // event.preventDefault();
- // let temperatureElement = document.querySelector("#temperature");
- // temperatureElement.innerHTML = 66;
-//}
+function convertToFahrenheit(event) {
+ event.preventDefault();
+ let temperatureElement = document.querySelector("#temperature");
+ temperatureElement.innerHTML = 66;
+}
 
-//function convertToCelsius(event) {
-  //event.preventDefault();
-  //let temperatureElement = document.querySelector("#temperature");
-  //temperatureElement.innerHTML = 19;
-//}
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = 19;
+}
 
 
 
